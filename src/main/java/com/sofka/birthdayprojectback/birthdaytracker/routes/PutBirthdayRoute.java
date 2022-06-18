@@ -21,7 +21,7 @@ public class PutBirthdayRoute {
         return route(PUT("/v1/api/birthday").and(accept(MediaType.APPLICATION_JSON)),
                 request -> request.bodyToMono(BirthdayDTO.class)
                         .flatMap(useCase::apply)
-                        .flatMap(dto -> ServerResponse.status(HttpStatus.CREATED)
+                        .flatMap(dto -> ServerResponse.status(HttpStatus.ACCEPTED)
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .bodyValue(dto))
                         .onErrorResume((error) -> ServerResponse.status(HttpStatus.BAD_REQUEST).build())
