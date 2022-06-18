@@ -32,13 +32,17 @@ public class PutBirthdayUseCase {
         return repository.findById(dto.getId())
                 .switchIfEmpty(Mono.error(() -> new IllegalStateException("Birthday not found " + dto.getId())))
                 .filter(entity -> bcrypt.compare(dto.getSecret(), entity.getSecret()))
-                .switchIfEmpty(Mono.error(() -> new IllegalStateException("Birthday's secret do not match " + dto.getId())))
+                .switchIfEmpty(Mono.error(() -> new IllegalStateException("Birthday's secret does not match " + dto.getId())))
                 .flatMap(entity -> {
                     dateFormatter.setUserAgeFromDate(dto);
                     dto.setSecret(entity.getSecret());
                     return repository.save(mapper.dtoToEntity(dto));
                 })
-                .map(mapper::entityToDTO);
+                .map(entity -> {
+                    BirthdayDTO birthdayDTO = mapper.entityToDTO(entity);
+                    birthdayDTO.setSecret("Shhh it's a secret");
+                    return birthdayDTO;
+                });
 
     }
 

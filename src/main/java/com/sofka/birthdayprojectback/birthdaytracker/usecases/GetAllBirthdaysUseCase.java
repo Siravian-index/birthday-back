@@ -18,7 +18,11 @@ public class GetAllBirthdaysUseCase {
     }
 
     public Flux<BirthdayDTO> apply() {
-        return repository.findAll().map(mapper::entityToDTO);
+        return repository.findAll().map(entity -> {
+            BirthdayDTO birthdayDTO = mapper.entityToDTO(entity);
+            birthdayDTO.setSecret("Shhh it's a secret");
+            return birthdayDTO;
+        });
     }
 
 
