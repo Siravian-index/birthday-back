@@ -5,23 +5,21 @@ import com.sofka.birthdayprojectback.birthdaytracker.mapper.BirthdayMapper;
 import com.sofka.birthdayprojectback.birthdaytracker.repository.BirthdayRepository;
 import com.sofka.birthdayprojectback.birthdaytracker.util.DateFormatter;
 import org.springframework.stereotype.Service;
-import org.springframework.validation.annotation.Validated;
 import reactor.core.publisher.Mono;
 
 import javax.validation.Valid;
-import java.time.LocalDate;
-import java.time.Period;
 
 @Service
-@Validated
-public class PostBirthdayUseCase {
+public class PutBirthdayUseCase {
+
     private final BirthdayMapper mapper;
     private final BirthdayRepository repository;
     private final DateFormatter dateFormatter;
 
+
     public static void main(String[] args) {
     }
-    public PostBirthdayUseCase(BirthdayMapper mapper, BirthdayRepository repository, DateFormatter dateFormatter) {
+    public PutBirthdayUseCase(BirthdayMapper mapper, BirthdayRepository repository, DateFormatter dateFormatter) {
         this.mapper = mapper;
         this.repository = repository;
         this.dateFormatter = dateFormatter;
