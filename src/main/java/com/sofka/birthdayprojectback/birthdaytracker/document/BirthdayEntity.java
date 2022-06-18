@@ -1,11 +1,10 @@
 package com.sofka.birthdayprojectback.birthdaytracker.document;
 
-
 import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = "Birthday")
+@Document
 @Data
 public class BirthdayEntity {
     @Id
@@ -17,4 +16,3 @@ public class BirthdayEntity {
     private String city;
     private String maritalStatus;
 }
-
