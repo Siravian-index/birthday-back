@@ -15,4 +15,5 @@ public class BirthdayEntity {
     private String phone;
     private String city;
     private String maritalStatus;
+    private String secret;
 }

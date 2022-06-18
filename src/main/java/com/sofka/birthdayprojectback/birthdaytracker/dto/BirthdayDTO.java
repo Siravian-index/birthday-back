@@ -18,4 +18,6 @@ public class BirthdayDTO {
     private String city;
     @NotBlank
     private String maritalStatus;
+    @NotBlank
+    private String secret;
 }
