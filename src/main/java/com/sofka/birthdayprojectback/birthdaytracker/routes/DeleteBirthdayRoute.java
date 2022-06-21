@@ -26,7 +26,7 @@ import static org.springframework.web.reactive.function.server.RouterFunctions.r
 @Configuration
 public class DeleteBirthdayRoute {
     @Bean
-    @RouterOperation(path = "/v1/api/birthday", produces = {
+    @RouterOperation(path = "/v1/api/birthday/", produces = {
             MediaType.APPLICATION_JSON_VALUE}, method = RequestMethod.DELETE, beanClass = DeleteBirthdayUseCase.class, beanMethod = "apply",
             operation = @Operation(operationId = "deleteBirthday", tags = "Birthday", responses = {
                     @ApiResponse(responseCode = "202", description = "successful operation", content = @Content(schema = @Schema(implementation = BirthdayDTO.class))),

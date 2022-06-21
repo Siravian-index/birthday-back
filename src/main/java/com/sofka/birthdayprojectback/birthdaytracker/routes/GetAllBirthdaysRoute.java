@@ -25,7 +25,7 @@ import static org.springframework.web.reactive.function.server.RouterFunctions.r
 public class GetAllBirthdaysRoute {
 
     @Bean
-    @RouterOperation(path = "/v1/api/birthday", produces = {
+    @RouterOperation(path = "/v1/api/birthday/", produces = {
             MediaType.APPLICATION_JSON_VALUE},
             beanClass = GetAllBirthdaysUseCase.class, method = RequestMethod.GET, beanMethod = "apply",
             operation = @Operation(operationId = "getBirthdays", tags = "Birthday",responses = {
@@ -33,7 +33,7 @@ public class GetAllBirthdaysRoute {
                             content = @Content(schema = @Schema(implementation = BirthdayDTO.class)))})
     )
     public RouterFunction<ServerResponse> getAllBirthdays(GetAllBirthdaysUseCase useCase) {
-        return route(GET("/v1/api/birthday"),
+        return route(GET("/v1/api/birthday/"),
                 request -> ServerResponse.status(HttpStatus.OK)
                         .contentType(MediaType.APPLICATION_JSON)
                         .body(BodyInserters.fromProducer(useCase.apply(), BirthdayDTO.class)));

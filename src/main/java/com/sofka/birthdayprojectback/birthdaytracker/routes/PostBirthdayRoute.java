@@ -23,7 +23,7 @@ import static org.springframework.web.reactive.function.server.RouterFunctions.r
 @Configuration
 public class PostBirthdayRoute {
     @Bean
-    @RouterOperation(path = "/v1/api/birthday", produces = {
+    @RouterOperation(path = "/v1/api/birthday/", produces = {
             MediaType.APPLICATION_JSON_VALUE}, method = RequestMethod.POST, beanClass = PostBirthdayUseCase.class, beanMethod = "apply",
             operation = @Operation(operationId = "addBirthday",tags = "Birthday", responses = {
                     @ApiResponse(responseCode = "201", description = "successful operation", content = @Content(schema = @Schema(implementation = BirthdayDTO.class))),
@@ -31,7 +31,7 @@ public class PostBirthdayRoute {
                     , requestBody = @RequestBody(content = @Content(schema = @Schema(implementation = BirthdayDTO.class)))
             ))
     public RouterFunction<ServerResponse> postBirthday(PostBirthdayUseCase useCase) {
-        return route(POST("/v1/api/birthday").and(accept(MediaType.APPLICATION_JSON)),
+        return route(POST("/v1/api/birthday/").and(accept(MediaType.APPLICATION_JSON)),
                 request -> request.bodyToMono(BirthdayDTO.class)
                         .flatMap(useCase::apply)
                         .flatMap(dto -> ServerResponse.status(HttpStatus.CREATED)
